@@ -12,6 +12,7 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 // ...
+app.get('/live', (req, res) => { res.status(200).json({ message: 'ok' }); });
 
 // É importante exportar a constante `app`,
 // para que possa ser utilizada pelo arquivo `src/server.js`
