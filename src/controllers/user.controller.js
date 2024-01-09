@@ -1,0 +1,11 @@
+const httpMap = require('../utils/mapHttpStatus');
+const userService = require('../services/user.service');
+
+const insertUser = async (req, res) => {
+  const { displayName, email, password, image } = req.body;
+
+  const { status, data } = await userService.createUser(displayName, email, password, image);
+  res.status(httpMap(status)).json(data);
+};
+
+module.exports = { insertUser };

@@ -1,7 +1,5 @@
-const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-
-const jwtPassWord = process.env.JWT_SECRET;
+const { newToken } = require('../utils/token');
 
 const login = async (email, password) => {
   if (!email || !password) {
@@ -13,9 +11,7 @@ const login = async (email, password) => {
     return { status: 'BAD_REQUEST', data: { message: 'Invalid fields' } };
   }
 
-  const token = jwt.sign({
-    sub: findUser.id,
-  }, jwtPassWord, { expiresIn: '7d' });
+  const token = newToken(findUser.id);
 
   return { status: 'SUCCESS', data: { token } };
 };

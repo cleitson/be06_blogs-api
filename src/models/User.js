@@ -6,7 +6,7 @@ const UsersModel = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    display_name: {
+    displayName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -23,7 +23,7 @@ const UsersModel = (sequelize, DataTypes) => {
   }, {
     tableName: 'users',
     timestamps: false,
-    undescored: true,
+    underscored: true,
   })
 
   model.associate = (models) => {

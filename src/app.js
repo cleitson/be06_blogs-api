@@ -1,7 +1,7 @@
 const express = require('express');
 require('express-async-errors');
 const { Category } = require('./models');
-const { Login } = require('./routes');
+const { Login, User } = require('./routes');
 // ...
 
 const app = express();
@@ -14,6 +14,7 @@ app.get('/', (_request, response) => {
 app.use(express.json());
 
 app.use('/login', Login);
+app.use('/user', User);
 
 app.get('/categories', async (req, res) => {
   const data = await Category.findAll();
