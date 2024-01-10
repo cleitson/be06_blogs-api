@@ -6,7 +6,9 @@ const authMiddleware = require('../middlewares/auth.middleware');
 const userRoute = new Router();
 
 userRoute.get('/', authMiddleware, findAllUser);
+
 userRoute.get('/:id', authMiddleware, findById);
+
 userRoute.post('/', validDisplayName, validEmail, validPassword, insertUser);
 
 module.exports = userRoute;
