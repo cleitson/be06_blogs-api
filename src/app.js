@@ -16,11 +16,6 @@ app.use('/login', Login);
 app.use('/user', User);
 app.use('/categories', Category);
 
-// app.get('/categories', async (req, res) => {
-//   const data = await Category.findAll();
-//   res.status(200).json(data);
-// });
-
 app.use((error, _req, res, _next) => res.status(500).json({ error: error.message }));
 
 // É importante exportar a constante `app`,
