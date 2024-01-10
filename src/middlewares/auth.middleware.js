@@ -1,21 +1,24 @@
-const jwt = require('jsonwebtoken');
+const jwt = require('../utils/token');
 
 const authMiddleware = (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization) {
-    return res.sendStatus(401);
+    return res.status(401).json({
+      message: 'Token not found',
+    });
   }
-  const [, token] = authorization.split(' ');
-  
+
+  const [, token] = authorization.split(' ');  
+
   try {
-    const claims = jwt.verify(token, 'senha');
+    const claims = jwt.verifyToken(token);
     res.locals.user = {
       id: claims.sub,
       role: claims.role,
     };
   } catch (err) {
     console.log(err.message);
-    return res.sendStatus(401);
+    return res.status(401).json({ message: 'Expired or invalid token' });
   }
 
   next();

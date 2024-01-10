@@ -14,4 +14,9 @@ const createUser = async (displayName, email, password, image) => {
   return { status: 'CREATED', data: { token } };
 };
 
-module.exports = { createUser };
+const getAllUser = async () => {
+  const findAllUser = await User.findAll({ attributes: ['id', 'displayName', 'email', 'image'] });
+  return { status: 'SUCCESS', data: findAllUser };
+};
+
+module.exports = { createUser, getAllUser };

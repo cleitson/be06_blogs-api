@@ -8,4 +8,8 @@ const insertUser = async (req, res) => {
   res.status(httpMap(status)).json(data);
 };
 
-module.exports = { insertUser };
+const findAllUser = async (req, res) => {
+  const { status, data } = await userService.getAllUser();
+  res.status(httpMap(status)).json(data);
+};
+module.exports = { insertUser, findAllUser };
