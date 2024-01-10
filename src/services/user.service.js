@@ -19,4 +19,12 @@ const getAllUser = async () => {
   return { status: 'SUCCESS', data: findAllUser };
 };
 
-module.exports = { createUser, getAllUser };
+const getUserById = async (id) => {
+  const findUser = await User.findByPk(id, { attributes: ['id', 'displayName', 'email', 'image'] });
+  if (!findUser) {
+    return { status: 'NOT_FOUND', data: { message: 'User does not exist' } };
+  }
+  return { status: 'SUCCESS', data: findUser };
+};
+
+module.exports = { createUser, getAllUser, getUserById };
